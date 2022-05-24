@@ -9,4 +9,5 @@ jobs:
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       with:
-        image: Dockerfile
+        image: mcsnyk/juice-shop:${{steps.vars.outputs.tag}}
+        args: --file=Dockerfile
