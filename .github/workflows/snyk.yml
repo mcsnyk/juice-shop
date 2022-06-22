@@ -1,4 +1,4 @@
-name: Prebuilt repo + Snyk Security Scanning
+name: Prebuilt repo + Snyk Security Scanning...
 
 on:
   push:
