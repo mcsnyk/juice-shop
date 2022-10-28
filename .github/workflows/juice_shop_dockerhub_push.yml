@@ -26,7 +26,7 @@ jobs:
     - run: docker build . --tag abcd
     
     - name: Snyk Container Scanning
-      run: snyk container monitor --org=miklos_org_1 abcd
+      run: snyk container monitor --app-vulns --org=miklos_org_1 abcd
       continue-on-error: true
       
     - name: Login to DockerHub
