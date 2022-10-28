@@ -28,8 +28,12 @@ jobs:
       with:
         push: true
         tags: mcsnyk/juice-shop:latest,mcsnyk/juice-shop:${{steps.vars.outputs.tag}}
-               
-    - name: Snyk container scan
+    
+    - name: Snyk Container Scanning
+      run: snyk container test --org=3ee0d99d-1651-4b78-b9a4-a2658bd1815e mcsnyk/juice-shop:latest
+      continue-on-error: true
+    
+    - name: Snyk container scan with DockerMaster
       continue-on-error: true
       uses: snyk/actions/docker@master
       env:
