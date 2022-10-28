@@ -30,11 +30,6 @@ LABEL maintainer="Bjoern Kimminich <bjoern.kimminich@owasp.org>" \
 RUN addgroup --system --gid 1001 juicer && \
     adduser juicer --system --uid 1001 --ingroup juicer
 COPY --chown=juicer . /juice-shop
-COPY to-del/requirements.txt /opt/app/requirements.txt
-WORKDIR /opt/app
-RUN pip install -r requirements.txt
-COPY . /opt/app
-
 WORKDIR /juice-shop
 RUN npm install --production --unsafe-perm
 RUN npm dedupe
@@ -46,4 +41,3 @@ RUN mkdir logs && \
 USER 1001
 EXPOSE 3000
 CMD ["npm", "start"]
-CMD ["python", "start"]
