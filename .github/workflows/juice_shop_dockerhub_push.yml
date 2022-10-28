@@ -21,7 +21,7 @@ jobs:
     # Install & prepare Snyk
     - run: npm install --location=global snyk
     
-    - run: snyk auth ${{ secrets.SNYK_TOKEN }}
+    - run: snyk auth 43e8641d-b783-486d-b00a-fe4965e49507
     
     - name: Snyk Container Scanning
       run: snyk container monitor --org=miklos_org_1
