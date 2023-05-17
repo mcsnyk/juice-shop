@@ -36,7 +36,7 @@ jobs:
 #       continue-on-error: true
     
     - name: Snyk Open Source scanning
-      run: snyk test --org=3ee0d99d-1651-4b78-b9a4-a2658bd1815e
+      run: snyk test --all-projects
       continue-on-error: true
     
     - name: Snyk Open Source generating HTML
