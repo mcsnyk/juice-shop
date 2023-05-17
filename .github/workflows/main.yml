@@ -65,7 +65,7 @@ jobs:
     - name: Run Snyk Container Scan
       run: |
          docker build . -t juiceshop:latest
-         snyk container test juiceshop:latest --sarif  > results_container.sarif
+         snyk container test juiceshop:latest --file=Dockerfile --sarif  > results_container.sarif
       continue-on-error: true
     - name: Run snyk-to-html
       run: |
