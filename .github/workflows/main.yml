@@ -43,4 +43,10 @@ jobs:
       run: snyk test --json | snyk-to-html>OS_results.html
       continue-on-error: true
       
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v2
+      with:
+          name: Snyk Report
+          path: OS_results.html
+      
       
