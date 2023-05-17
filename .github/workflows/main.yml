@@ -31,9 +31,6 @@ jobs:
 #         docker build . -t storybooks:latest
 #         snyk container monitor mcsnyk/storybooks:latest --org=3ee0d99d-1651-4b78-b9a4-a2658bd1815e
 
-#     - name: Snyk Code Scanning
-#       run: snyk code test --org=3ee0d99d-1651-4b78-b9a4-a2658bd1815e
-#       continue-on-error: true
     
     - name: Snyk Open Source scanning
       run: snyk test --all-projects
@@ -49,4 +46,25 @@ jobs:
           name: Snyk Report
           path: OS_results.html
       
-      
+    # Run Snyk Code
+    - name: Run Snyk Code
+      run: |
+         snyk code test --sarif  > results_code.sarif
+      continue-on-error: true
+    - name: Run snyk-to-html
+      run: |
+         snyk-to-html -i results_code.sarif -o results_code.html
+      continue-on-error: true
+    - name: Archive Snyk Scan Results
+      uses: actions/upload-artifact@v2
+      with:
+          name: Archive Snyk Code Scan Results
+          path: | 
+            results_code.sarif
+            results_code.html  
+    - name: Upload SARIF file
+      uses: github/codeql-action/upload-sarif@v2
+      with:
+        # Path to SARIF file relative to the root of the repository
+        sarif_file: results_code.sarif
+        
