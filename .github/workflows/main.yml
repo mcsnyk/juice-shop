@@ -40,7 +40,7 @@ jobs:
       continue-on-error: true
     
     - name: Snyk Open Source generating HTML
-      run: snyk test --json | snyk-to-html>OS_results.html
+      run: snyk test --all-projects --json | snyk-to-html>OS_results.html
       continue-on-error: true
       
     - name: Upload Artifacts
